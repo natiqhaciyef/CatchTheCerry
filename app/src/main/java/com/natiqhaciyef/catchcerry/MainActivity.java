@@ -21,14 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView c1, c2 , c3 , c4 , c5 , c6 ,c7 ,c8 ,c9 ,c10 ,c11 ,c12 ;
     ImageView [] imageArray ;
-
     TextView time ;
     TextView score ;
     int point = 0 ;
-
     Handler handler ;
     Runnable runnable;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +48,9 @@ public class MainActivity extends AppCompatActivity {
         c11 = findViewById(R.id.imageView11);
         c12 = findViewById(R.id.imageView12);
 
-
         imageArray = new ImageView[] {c1 , c2 , c3 ,c4 ,c5 , c6 , c7 ,c8 ,c9 , c10 , c11 ,c12};
 
         hideImages();
-
         new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
@@ -71,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-
                 alert.setTitle("Game ended !");
                 alert.setMessage("Do you want to start again");
                 alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -90,26 +84,17 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-
                 alert.show();
             }
-
         }.start();
-
-
-
     }
-
 
     public void mouseClick(View view){
         point++ ;
         score.setText("Score : " + point);
-
     }
 
-
     public void hideImages(){
-
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -117,18 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 for (ImageView image : imageArray){
                     image.setVisibility(View.INVISIBLE);
                 }
-
                 Random random = new Random();
                 int i = random.nextInt(12);
                 imageArray[i].setVisibility(View.VISIBLE);
-
                 handler.postDelayed(this , 750);
             }
         };
-
         handler.post(runnable);
-
     }
-
-
 }
